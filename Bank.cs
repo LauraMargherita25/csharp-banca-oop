@@ -62,6 +62,7 @@ namespace csharp_banca_oop
 
         private void SearchCustomer()
         {
+            Console.Clear();
             string input;
             bool notFound = true;
 
