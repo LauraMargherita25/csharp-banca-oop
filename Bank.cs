@@ -9,14 +9,80 @@ namespace csharp_banca_oop
     internal class Bank
     {
         public string Name { get; set; }
-        private List<Customer> customers;
-        private List<Loan> loans = new List<Loan>();
+        public List<Customer> customers;
+        public List<Loan> loans;
 
         public Bank (string name)
         {
             this.Name = name;
             this.customers = new List<Customer>();
             this.loans = new List<Loan>();
+        }
+
+        internal void OpenBank()
+        {
+            Console.WriteLine("Benvenuto in Banca {0}", this.Name);
+            //this.AddNewCustomer();
+            string[] menu = { "Registra un nuovo cliente", "Cerca un cliente", };
+            for (int i = 0; i < menu.Length; i++)
+            {
+                Console.WriteLine("{0}.{1}", i + 1, menu[i]);
+            }
+            int input = int.Parse(Console.ReadLine());
+
+            if (input == 1)
+            {
+                this.AddNewCustomer();
+            }
+            else if(input == 2)
+            {
+                this.SearchCustomer();
+            }
+            else
+            {
+                Console.WriteLine("Scelta non valida");
+            }
+        }
+
+        private void AddNewCustomer()
+        {
+            Console.WriteLine("Registra un nuovo cliente");
+
+            Console.Write("Nome Cliente: ");
+            string inputName = Console.ReadLine();
+            Console.Write("Cognome Cliente: ");
+            string inputSurname = Console.ReadLine();
+            Console.Write("Codice Fiscale: ");
+            string inputTaxCode = Console.ReadLine();
+            Console.Write("Stipendio: ");
+            int inputSalary = int.Parse(Console.ReadLine());
+
+            Customer newCustomer = new Customer(inputName, inputSurname, inputTaxCode, inputSalary);
+        }
+
+        private void SearchCustomer()
+        {
+            Console.WriteLine("Ricerca cliente per cognome o codice fiscale");
+            string input = Console.ReadLine();
+            bool notFound = true;
+
+
+            do
+            {
+                foreach (Customer customer in customers)
+                {
+                    if (customer.Surname == input || customer.TaxCode == input)
+                    {
+                        notFound = false;
+                        Console.WriteLine("Cliente trovato");
+                    }
+                    //else
+                    //{
+                    //    Console.WriteLine("Nessun cliente trovato.Riprova!");
+                    //    SearchCustomer();
+                    //}
+                }
+            }while (notFound);
         }
     }
 }
