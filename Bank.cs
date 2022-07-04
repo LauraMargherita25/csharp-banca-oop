@@ -22,7 +22,7 @@ namespace csharp_banca_oop
         internal void OpenBank()
         {
             Console.WriteLine("Benvenuto in Banca {0}", this.Name);
-            //this.AddNewCustomer();
+  
             string[] menu = { "Registra un nuovo cliente", "Cerca un cliente", };
             for (int i = 0; i < menu.Length; i++)
             {
@@ -76,15 +76,51 @@ namespace csharp_banca_oop
                     if (customer.Surname == input || customer.TaxCode == input)
                     {
                         notFound = false;
-                        Console.WriteLine("Cliente trovato");
+                       
                         customer.PrintCustomer();
+
+
+                        string[] menu = { "Modifica i dati del cliente", "Aggiungi un nuovo prestito" };
+                        for (int i = 0; i < menu.Length; i++)
+                        {
+                            Console.WriteLine("{0}.{1}", i + 1, menu[i]);
+                        }
+
+
+                        int menuInput = int.Parse(Console.ReadLine());
+                        if (menuInput == 1)
+                        {
+                            customer.UpdateCustomerData();
+
+                        }
+                        else if (menuInput == 2)
+                        {
+                            this.AddNewLoan(customer);
+                        }
                     }
                     else
                     {
                         Console.WriteLine("Nessun cliente trovato.Riprova!");
                     }
                 }
-            }while (notFound);
+            } while (notFound);
+        }
+        public void AddNewLoan(Customer customer)
+        {
+            Console.WriteLine("Compila il modulo per avviare un nuovo prestito");
+
+            Console.Write("Totale prestito: ");
+            int inputLoanTotal = int.Parse(Console.ReadLine());
+            Console.Write("Rata mensile: ");
+            int inputInstallment = int.Parse(Console.ReadLine());
+            Console.Write("Data prima rata: ");
+            DateOnly startingDate = DateOnly.Parse(Console.ReadLine());
+            Loan newLoan = new Loan(customer, inputLoanTotal, inputInstallment, DateOnly.FromDateTime(DateTime.Now));
+            loans.Add(newLoan);
+            
+            Console.Clear();
+            Console.WriteLine("Apertura prestito andata a buon fine");
+            newLoan.PrintLoan();
         }
     }
 }

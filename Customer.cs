@@ -17,32 +17,12 @@
 
         internal void PrintCustomer()
         {
-            Console.Clear();
             Console.WriteLine("Cognome: {0}", this.Surname);
             Console.WriteLine("Nome: {0}", this.Name);
             Console.WriteLine("Cognome: {0}", this.TaxCode);
-
-            Console.WriteLine();
-
-            string[] menu = { "Modifica i dati del cliente", "Aggiungi un nuovo prestito" };
-            for(int i = 0; i < menu.Length; i++)
-            {
-                Console.WriteLine("{0}.{1}", i + 1, menu[i]);
-            }
-            int input = int.Parse(Console.ReadLine());
-            if(input == 1)
-            {
-                this.UpdateUserData();
-
-            } 
-            //else if (input == 2)
-            //{
-            //    Loan.AddNewLoan();
-            //}
-            
         }
 
-        private void UpdateUserData()
+        internal void UpdateCustomerData()
         {
             Console.Write("Cognome: ");
             this.Surname = Console.ReadLine();
@@ -54,9 +34,5 @@
             this.PrintCustomer();
         }
 
-        //private void AddNewLoan()
-        //{
-        //    Loan newLoan = new Loan(this.customer,)
-        //}
     }
 }
