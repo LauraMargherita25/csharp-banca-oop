@@ -9,10 +9,10 @@
 
         public Customer (string name, string surname, string taxCode, int salary)
         {
-            Name = name;
-            Surname = surname;
-            TaxCode = taxCode;
-            Salary = salary;
+            this.Name = name;
+            this.Surname = surname;
+            this.TaxCode = taxCode;
+            this.Salary = salary;
         }
     }
 }
