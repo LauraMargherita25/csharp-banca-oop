@@ -22,8 +22,9 @@
             Console.WriteLine("Nome: {0}", this.Name);
             Console.WriteLine("Cognome: {0}", this.TaxCode);
 
-            Console.WriteLine("Si desidera modificare i dati del cliente?");
-            string[] menu = { "si", "no" };
+            Console.WriteLine();
+
+            string[] menu = { "Modifica i dati del cliente", "Aggiungi un nuovo prestito" };
             for(int i = 0; i < menu.Length; i++)
             {
                 Console.WriteLine("{0}.{1}", i + 1, menu[i]);
@@ -33,7 +34,11 @@
             {
                 this.UpdateUserData();
 
-            }
+            } 
+            //else if (input == 2)
+            //{
+            //    Loan.AddNewLoan();
+            //}
             
         }
 
@@ -48,5 +53,10 @@
 
             this.PrintCustomer();
         }
+
+        //private void AddNewLoan()
+        //{
+        //    Loan newLoan = new Loan(this.customer,)
+        //}
     }
 }
