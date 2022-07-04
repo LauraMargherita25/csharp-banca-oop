@@ -115,7 +115,7 @@ namespace csharp_banca_oop
             int inputInstallment = int.Parse(Console.ReadLine());
             Console.Write("Data prima rata: ");
             DateOnly startingDate = DateOnly.Parse(Console.ReadLine());
-            Loan newLoan = new Loan(customer, inputLoanTotal, inputInstallment, DateOnly.FromDateTime(DateTime.Now));
+            Loan newLoan = new Loan(customer, inputLoanTotal, inputInstallment, startingDate);
             loans.Add(newLoan);
             
             Console.Clear();

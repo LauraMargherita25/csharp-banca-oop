@@ -7,7 +7,7 @@
         public int LoanTotal { get; set; }
         public int Installment { get; set; }
         public DateOnly StartingDate { get; set; }
-        public static string EndingDate { get; set; }
+        public string EndingDate { get; set; }
 
         public Loan (Customer customer, int loanTotal, int installment, DateOnly startingDate)
         {
@@ -16,7 +16,7 @@
             this.LoanTotal = loanTotal;
             this.Installment = installment;
             this.StartingDate = startingDate;
-            Loan.EndingDate = this.StartingDate.AddMonths(GetDurataLoan()).ToString("d");
+            this.EndingDate = this.StartingDate.AddMonths(GetDurataLoan()).ToString("d");
         }   
 
         //public static void AddNewLoan(Customer customer)
@@ -43,7 +43,7 @@
             Console.WriteLine("Rata: {0}", this.Installment);
             Console.WriteLine("Numero rate: {0}", GetDurataLoan());
             Console.WriteLine("Data inizio: {0}", this.StartingDate);
-            Console.WriteLine("Data fine: {0}", Loan.EndingDate);
+            Console.WriteLine("Data fine: {0}", this.EndingDate);
         }
 
         private int GetDurataLoan()
