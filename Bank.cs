@@ -62,25 +62,26 @@ namespace csharp_banca_oop
 
         private void SearchCustomer()
         {
-            Console.WriteLine("Ricerca cliente per cognome o codice fiscale");
-            string input = Console.ReadLine();
+            string input;
             bool notFound = true;
 
 
             do
             {
+                Console.WriteLine("Ricerca cliente per cognome o codice fiscale");
+                input = Console.ReadLine();
                 foreach (Customer customer in customers)
                 {
                     if (customer.Surname == input || customer.TaxCode == input)
                     {
                         notFound = false;
                         Console.WriteLine("Cliente trovato");
+                        customer.PrintCustomer();
                     }
-                    //else
-                    //{
-                    //    Console.WriteLine("Nessun cliente trovato.Riprova!");
-                    //    SearchCustomer();
-                    //}
+                    else
+                    {
+                        Console.WriteLine("Nessun cliente trovato.Riprova!");
+                    }
                 }
             }while (notFound);
         }

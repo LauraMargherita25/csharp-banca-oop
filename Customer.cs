@@ -14,5 +14,12 @@
             this.TaxCode = taxCode;
             this.Salary = salary;
         }
+
+        internal void PrintCustomer()
+        {
+            Console.WriteLine("Cognome: {0}", this.Surname);
+            Console.WriteLine("Nome: {0}", this.Name);
+            Console.WriteLine("Cognome: {0}", this.TaxCode);
+        }
     }
 }
