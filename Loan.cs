@@ -46,11 +46,14 @@
             Console.WriteLine("Data fine: {0}", this.EndingDate);
         }
 
-        private int GetDurataLoan()
+        public int GetDurataLoan()
         {
             return this.LoanTotal / this.Installment;
         }
 
-        
+        public int GetInstallmentLeft()
+        {
+
+        }
     }
 }

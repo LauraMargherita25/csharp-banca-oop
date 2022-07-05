@@ -80,7 +80,7 @@ namespace csharp_banca_oop
                         customer.PrintCustomer();
 
 
-                        string[] menu = { "Modifica i dati del cliente", "Aggiungi un nuovo prestito", "I tuoi prestiti" };
+                        string[] menu = { "Modifica i dati del cliente", "Aggiungi un nuovo prestito", "I tuoi prestiti", "Totale prestiti" };
                         for (int i = 0; i < menu.Length; i++)
                         {
                             Console.WriteLine("{0}.{1}", i + 1, menu[i]);
@@ -106,7 +106,11 @@ namespace csharp_banca_oop
                                 loan.PrintLoan();
                                 Console.WriteLine();
                             }
-                            
+                        }
+                        else if (menuInput == 4)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Ci devi {0} Euro", this.GetLoansTotalAmmount(customer.TaxCode));
                         }
                     }
                     else
@@ -139,7 +143,10 @@ namespace csharp_banca_oop
         {
            return loans.Where(loan => loan.customer.TaxCode == taxCode).ToList();
         }
-       
-            
+
+        public int GetLoansTotalAmmount(string taxCode)
+        {
+            return loans.Where(loan => loan.customer.TaxCode == taxCode).Sum(loan => loan.LoanTotal);
+        }
     }
 }
