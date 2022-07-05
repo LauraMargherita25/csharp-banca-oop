@@ -2,7 +2,7 @@
 {
     internal class Loan
     {
-        Customer customer;
+        public Customer customer { get; set; }
         public string Id { get; private set; }
         public int LoanTotal { get; set; }
         public int Installment { get; set; }

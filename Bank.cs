@@ -80,7 +80,7 @@ namespace csharp_banca_oop
                         customer.PrintCustomer();
 
 
-                        string[] menu = { "Modifica i dati del cliente", "Aggiungi un nuovo prestito" };
+                        string[] menu = { "Modifica i dati del cliente", "Aggiungi un nuovo prestito", "I tuoi prestiti" };
                         for (int i = 0; i < menu.Length; i++)
                         {
                             Console.WriteLine("{0}.{1}", i + 1, menu[i]);
@@ -97,6 +97,17 @@ namespace csharp_banca_oop
                         {
                             this.AddNewLoan(customer);
                         }
+                        else if (menuInput == 3)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("I tuoi prestiti");
+                            foreach(Loan loan in this.GetCustomerLoans(customer.TaxCode))
+                            {
+                                loan.PrintLoan();
+                                Console.WriteLine();
+                            }
+                            
+                        }
                     }
                     else
                     {
@@ -105,6 +116,7 @@ namespace csharp_banca_oop
                 }
             } while (notFound);
         }
+
         public void AddNewLoan(Customer customer)
         {
             Console.WriteLine("Compila il modulo per avviare un nuovo prestito");
@@ -117,10 +129,17 @@ namespace csharp_banca_oop
             DateOnly startingDate = DateOnly.Parse(Console.ReadLine());
             Loan newLoan = new Loan(customer, inputLoanTotal, inputInstallment, startingDate);
             loans.Add(newLoan);
-            
+
             Console.Clear();
             Console.WriteLine("Apertura prestito andata a buon fine");
             newLoan.PrintLoan();
         }
+
+        public List<Loan> GetCustomerLoans( string taxCode)
+        {
+           return loans.Where(loan => loan.customer.TaxCode == taxCode).ToList();
+        }
+       
+            
     }
 }

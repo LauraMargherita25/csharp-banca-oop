@@ -1,6 +1,6 @@
 ﻿namespace csharp_banca_oop
 {
-    public class Customer
+    internal class Customer
     {
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -13,6 +13,7 @@
             this.Surname = surname;
             this.TaxCode = taxCode;
             this.Salary = salary;
+            //this.loans = new List<Loan> ();
         }
 
         internal void PrintCustomer()
